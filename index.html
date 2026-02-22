@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recyclage Service | Collecte de canettes aluminium</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container topbar">
+        <p class="brand">Recyclage Service</p>
+        <a class="topbar-link" href="#demande">Réserver une collecte</a>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="badge">Collecte locale • Rapide • Fiable</span>
+          <h1>Collecte de canettes aluminium pour particuliers et commerces</h1>
+          <p class="slogan">
+            Ne laissez pas vos canettes faire le hors-jeu ! Déposez-les ici, je
+            m’occupe de les recycler pour vous. ♻️
+          </p>
+          <p>
+            Service professionnel de récupération, avec prise de rendez-vous
+            simple et généralement gratuite sur Nancy et alentours.
+          </p>
+          <a href="#demande" class="btn">Demander une collecte</a>
+        </div>
+        <div class="hero-image-wrap">
+          <img
+            class="hero-image"
+            src="https://images.unsplash.com/photo-1570498839593-e565b39455fc?auto=format&fit=crop&w=1200&q=80"
+            alt="Ballon de football sur une pelouse, thème sport"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="section card">
+        <h2>Conditions de collecte</h2>
+        <div class="steps">
+          <article>
+            <h3>Zone desservie</h3>
+            <p>Nancy et alentours.</p>
+          </article>
+          <article>
+            <h3>Jours de récupération</h3>
+            <p>Mercredi et week-end.</p>
+          </article>
+          <article>
+            <h3>Minimum</h3>
+            <p>À partir de 3 sacs de canettes.</p>
+          </article>
+          <article>
+            <h3>Horaire</h3>
+            <p>Selon votre demande, avec confirmation de ma part.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section card">
+        <h2>Comment ça marche ?</h2>
+        <div class="steps">
+          <article>
+            <h3>1. Déclaration</h3>
+            <p>Vous indiquez la quantité de sacs et vos coordonnées.</p>
+          </article>
+          <article>
+            <h3>2. Validation</h3>
+            <p>Collecte sans frais sur Nancy et alentours (frais possibles uniquement hors zone).</p>
+          </article>
+          <article>
+            <h3>3. Confirmation</h3>
+            <p>Je confirme le créneau et le passage de collecte.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="demande" class="section card">
+        <h2>Formulaire de demande</h2>
+        <form id="collecte-form">
+          <label>
+            Nom
+            <input type="text" name="nom" required />
+          </label>
+
+          <label>
+            Téléphone
+            <input type="tel" name="telephone" required />
+          </label>
+
+          <label>
+            Quartier / Ville
+            <input type="text" name="ville" required />
+          </label>
+
+          <label>
+            Type de client
+            <select name="typeClient" required>
+              <option value="">Choisir...</option>
+              <option value="particulier">Particulier</option>
+              <option value="cafe">Café</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="snack">Snack</option>
+            </select>
+          </label>
+
+          <label>
+            Créneau souhaité
+            <select name="creneau" required>
+              <option value="">Choisir...</option>
+              <option value="matin">Matin</option>
+              <option value="apres-midi">Après-midi</option>
+            </select>
+          </label>
+
+          <label>
+            Sac(s) de canette(s)
+            <input type="number" name="canettes" min="3" value="3" required />
+          </label>
+
+          <button type="submit" class="btn">Calculer et envoyer</button>
+        </form>
+
+        <p id="resultat" class="resultat" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Recyclage Service · Nancy et alentours</p>
+      <p><a href="/admin.html">Suivi des demandes (admin)</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
