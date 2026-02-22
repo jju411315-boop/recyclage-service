@@ -1,4 +1,21 @@
 const form = document.getElementById('collecte-form');
+const dateInput = document.getElementById('creneau');
+
+// Bloquer les dates passées
+dateInput.min = new Date().toISOString().split("T")[0];
+
+dateInput.addEventListener('change', function () {
+  const selectedDate = new Date(this.value);
+  const day = selectedDate.getDay();
+
+  // 0 = dimanche
+  // 3 = mercredi
+  // 6 = samedi
+  if (day !== 3 && day !== 6 && day !== 0) {
+    alert("Les collectes sont possibles uniquement le mercredi, samedi et dimanche.");
+    this.value = "";
+  }
+});
 const resultat = document.getElementById('resultat');
 
 form.addEventListener('submit', async (event) => {
