@@ -1,40 +1,29 @@
-async function charger() {
-  const tbody = document.querySelector('#tableau tbody');
-  tbody.innerHTML = '';
-
-  const response = await fetch('/api/collectes');
-  const items = await response.json();
-
-  items.forEach((item) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${item.id}</td>
-      <td>${item.nom}</td>
-      <td>${item.ville}</td>
-      <td>${item.canettes}</td>
-      <td>${item.statut}</td>
-      <td>
-        <select data-id="${item.id}">
-          <option value="nouvelle" ${item.statut === 'nouvelle' ? 'selected' : ''}>nouvelle</option>
-          <option value="rappelee" ${item.statut === 'rappelee' ? 'selected' : ''}>rappelée</option>
-          <option value="collectee" ${item.statut === 'collectee' ? 'selected' : ''}>collectée</option>
-        </select>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  document.querySelectorAll('select[data-id]').forEach((select) => {
-    select.addEventListener('change', async (event) => {
-      const id = event.target.getAttribute('data-id');
-      await fetch(`/api/collectes/${id}/status`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ statut: event.target.value }),
-      });
-      charger();
-    });
-  });
-}
-
-charger();
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Suivi collectes</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container section card">
+      <h1>Suivi des demandes</h1>
+      <p>Tableau simple : nouvelles / rappelées / collectées.</p>
+      <table id="tableau">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Ville</th>
+            <th>Sacs</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+    <script src="admin.js"></script>
+  </body>
+</html>
