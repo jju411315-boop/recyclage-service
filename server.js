@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
+const nodemailer = require('nodemailer');
 
 const PORT = Number(process.env.PORT || 8080);
 const root = __dirname;
@@ -126,7 +127,7 @@ const server = http.createServer(async (req, res) => {
       writeDb(db);
 
       await Promise.all([
-        postWebhook(process.env.EMAIL_WEBHOOK_URL, { channel: 'email', record }),
+        postWebhook(process.env.EMAIL_WEBHOOK_URL=https://hook.eu1.make.com/rh2ci7higigc4ocqk8f3vm1weeh7tnhu, { channel: 'email', record }),
         postWebhook(process.env.WHATSAPP_WEBHOOK_URL, { channel: 'whatsapp', record }),
       ]);
 
