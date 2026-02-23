@@ -8,11 +8,16 @@ async function charger() {
   items.forEach((item) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${item.id}</td>
-      <td>${item.nom}</td>
-      <td>${item.ville}</td>
-      <td>${item.canettes}</td>
-      <td>${item.statut}</td>
+      tr.innerHTML = `
+  <td>${item.id}</td>
+  <td>${item.nom}</td>
+  <td>${item.telephone}</td>
+  <td>${item.ville}</td>
+  <td>${item.typeClient}</td>
+  <td>${item.creneau}</td>
+  <td>${item.canettes}</td>
+  <td>${new Date(item.createdAt).toLocaleString()}</td>
+  <td>${item.statut}</td>
       <td>
         <select data-id="${item.id}">
           <option value="nouvelle" ${item.statut === 'nouvelle' ? 'selected' : ''}>nouvelle</option>
