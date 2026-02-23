@@ -4,6 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
 const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'alban121008@gmail.com', // ton email Gmail
+        pass: 'abcdefghijklmnop' // mot de passe application Gmail
+    }
+});
 
 const PORT = Number(process.env.PORT || 8080);
 const root = __dirname;
@@ -126,11 +133,22 @@ const server = http.createServer(async (req, res) => {
       };
       db.unshift(record);
       writeDb(db);
+      const mailOptions = {
+  from: 'alban121008@gmail.com',
+  to: 'alban121008@gmail.com',
+  subject: 'Nouvelle demande de collecte',
+  html: `
+    Nom : ${record.nom} <br>
+    Téléphone : ${record.telephone} <br>
+    Ville : ${record.ville} <br>
+    Type client : ${record.typeClient} <br>
+    Créneau : ${record.creneau} <br>
+    Sacs : ${record.canettes} <br>
+    Date : ${record.createdAt}
+  `
+};
 
-      await Promise.all([
-        postWebhook(process.env.EMAIL_WEBHOOK_URL=https://hook.eu1.make.com/rh2ci7higigc4ocqk8f3vm1weeh7tnhu, { channel: 'email', record }),
-        postWebhook(process.env.WHATSAPP_WEBHOOK_URL, { channel: 'whatsapp', record }),
-      ]);
+await transporter.sendMail(mailOptions);
 
       sendJson(res, 201, record);
     } catch (error) {
